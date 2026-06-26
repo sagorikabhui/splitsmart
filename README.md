@@ -2,13 +2,18 @@
 ### AI Powered Expense Splitting Web Application
 > Split bills smartly, settle up instantly!
 
-## About SplitSmart
+---
+
+## 🌟 About SplitSmart
+
 SplitSmart is a full stack web application designed to simplify shared expense management among friends, roommates, and travel groups. It allows users to create groups, add expenses, split bills intelligently, and settle dues instantly through UPI payments.
 
 The highlight of SplitSmart is its AI powered receipt scanner built using Google Gemini AI, which allows users to simply upload a photo of any bill and the AI automatically extracts the expense title, amount, and category — eliminating manual data entry completely.
 
+---
 
-## Key Features
+## 🚀 Key Features
+
 - 🤖 **AI Receipt Scanner** — Upload bill photo, AI extracts details automatically
 - 👥 **Group Management** — Create groups for trips, home, office or friends
 - 💰 **Smart Expense Splitting** — Split equally, by exact amount or percentage
@@ -20,12 +25,12 @@ The highlight of SplitSmart is its AI powered receipt scanner built using Google
 - 🎨 **Theme Customization** — Light, dark and purple themes
 - 📱 **Responsive Design** — Works on desktop and mobile devices
 
+---
 
-
-## Technologies Used
+## 🛠️ Technologies Used
 
 | Category | Technology |
-
+|---|---|
 | Frontend | HTML5, CSS3, JavaScript (ES6+) |
 | Backend | Python, Django, Django REST Framework |
 | Database | SQLite |
@@ -38,11 +43,13 @@ The highlight of SplitSmart is its AI powered receipt scanner built using Google
 | Payment | UPI Deep Link Integration |
 | Version Control | Git & GitHub |
 
+---
 
-## Project Structure
+## 📁 Project Structure
 
 splitsmart/
 
+│
 
 ├── config/              → Django project settings & URLs
 
@@ -56,7 +63,7 @@ splitsmart/
 
 ├── scanner/             → AI Receipt Scanner
 
-
+│
 
 ├── frontend/            → HTML, CSS, JavaScript files
 
@@ -92,8 +99,9 @@ splitsmart/
 
 └── README.md            → Project documentation
 
+---
 
-## How to Run
+## ⚙️ How to Run
 
 ### 1. Clone the repository
 ```bash
@@ -142,10 +150,12 @@ python manage.py runserver
 ```
 
 ### 8. Open browser
+
 http://127.0.0.1:8000
 
+---
 
-## Pages
+## 📱 Pages
 
 | Page | Description |
 |---|---|
@@ -158,11 +168,12 @@ http://127.0.0.1:8000
 | Profile | Edit personal information |
 | Settings | App preferences and theme |
 
+---
 
-## API Endpoints
+## 🏗️ API Endpoints
 
 | Method | Endpoint | Description |
-
+|---|---|---|
 | POST | /api/users/register/ | Register new user |
 | POST | /api/users/login/ | Login user |
 | POST | /api/users/logout/ | Logout user |
@@ -178,14 +189,14 @@ http://127.0.0.1:8000
 | POST | /api/expenses/upi-payment/ | Generate UPI link |
 | POST | /api/scanner/scan/ | Scan receipt with AI |
 
+---
 
-
-## Developer
+## 👨‍💻 Developer
 
 Built with 💜 as an Internship Project
 
+---
 
-
-## License
+## 📄 License
 
 This project is for educational purposes only.
