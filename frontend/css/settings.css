@@ -1,0 +1,239 @@
+/* ===== SETTINGS LAYOUT ===== */
+.settings-grid {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 20px;
+}
+
+/* ===== SETTINGS MENU ===== */
+.settings-menu {
+    background: white;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: var(--shadow);
+    height: fit-content;
+}
+
+.settings-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-gray);
+    transition: all 0.3s ease;
+    margin-bottom: 5px;
+}
+
+.settings-menu-item:hover {
+    background: var(--background);
+    color: var(--primary);
+}
+
+.settings-menu-item.active {
+    background: rgba(142, 68, 173, 0.1);
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.settings-menu-item.danger {
+    color: var(--danger);
+}
+
+.settings-menu-item.danger:hover {
+    background: rgba(231, 76, 60, 0.1);
+    color: var(--danger);
+}
+
+.settings-menu-item i {
+    width: 20px;
+    text-align: center;
+}
+
+/* ===== SETTINGS SECTIONS ===== */
+.settings-section {
+    display: none;
+}
+
+.settings-section.active {
+    display: block;
+}
+
+/* ===== TOGGLE SWITCH ===== */
+.toggle-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.toggle-item:last-of-type {
+    border-bottom: none;
+}
+
+.toggle-info h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+}
+
+.toggle-info p {
+    font-size: 12px;
+    color: var(--text-gray);
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+    flex-shrink: 0;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #ccc;
+    border-radius: 26px;
+    transition: 0.3s;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: '';
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background: white;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.toggle-switch input:checked + .toggle-slider {
+    background: var(--primary);
+}
+
+.toggle-switch input:checked + .toggle-slider:before {
+    transform: translateX(24px);
+}
+
+/* ===== THEME OPTIONS ===== */
+.theme-options {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.theme-option {
+    text-align: center;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid var(--border);
+    transition: all 0.3s ease;
+}
+
+.theme-option.active {
+    border-color: var(--primary);
+    background: rgba(142, 68, 173, 0.05);
+}
+
+.theme-option:hover {
+    border-color: var(--primary);
+}
+
+.theme-preview {
+    width: 60px;
+    height: 40px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+.light-preview {
+    background: linear-gradient(135deg, #F8F4FF, #ffffff);
+    border: 1px solid var(--border);
+}
+
+.dark-preview {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+}
+
+.purple-preview {
+    background: linear-gradient(135deg, #6C3483, #9B59B6);
+}
+
+.theme-option span {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* ===== DANGER ZONE ===== */
+.danger-card {
+    border: 1px solid rgba(231, 76, 60, 0.2);
+}
+
+.danger-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.danger-item:last-child {
+    border-bottom: none;
+}
+
+.danger-item h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+}
+
+.danger-item p {
+    font-size: 12px;
+    color: var(--text-gray);
+}
+
+.btn-danger {
+    padding: 10px 20px;
+    background: rgba(231, 76, 60, 0.1);
+    color: var(--danger);
+    border: 2px solid var(--danger);
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-danger:hover {
+    background: var(--danger);
+    color: white;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .settings-grid {
+        grid-template-columns: 1fr;
+    }
+}

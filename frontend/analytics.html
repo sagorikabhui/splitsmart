@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SplitSmart — Analytics</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/theme.js"></script>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Page Loader -->
+    <div class="page-loader" id="pageLoader">
+        <i class="fas fa-spinner"></i>
+        <h2>Split<span style="color:#F39C12">Smart</span></h2>
+        <p>Loading your analytics...</p>
+    </div>
+
+    <div class="app-container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <h1>Split<span>Smart</span></h1>
+                <p>Split bills smartly</p>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html">
+                        <i class="fas fa-home"></i> Dashboard
+                    </a></li>
+                <li><a href="groups.html">
+                        <i class="fas fa-users"></i> Groups
+                    </a></li>
+                <li><a href="expenses.html">
+                        <i class="fas fa-receipt"></i> Expenses
+                    </a></li>
+                <li><a href="analytics.html" class="active">
+                        <i class="fas fa-chart-bar"></i> Analytics
+                    </a></li>
+            </ul>
+            <div class="sidebar-bottom">
+                <div class="user-profile" onclick="toggleDropdown()">
+                    <div class="user-avatar" id="userAvatar">U</div>
+                    <div class="user-info">
+                        <h4 id="userName">User</h4>
+                        <p id="userEmail">email@example.com</p>
+                    </div>
+                    <i class="fas fa-chevron-up" id="dropdownArrow"
+                        style="color:rgba(255,255,255,0.6); font-size:12px;"></i>
+                </div>
+
+                <!-- Dropdown Menu -->
+                <div id="profileDropdown" style="display:none; background:rgba(255,255,255,0.1);
+        border-radius:10px; margin-top:8px; overflow:hidden;">
+                    <a href="profile.html" style="display:flex; align-items:center; gap:10px;
+            padding:12px 15px; color:rgba(255,255,255,0.8); font-size:13px;
+            transition:all 0.3s ease; text-decoration:none;"
+                        onmouseover="this.style.background='rgba(255,255,255,0.1)'"
+                        onmouseout="this.style.background='transparent'">
+                        <i class="fas fa-user"></i> Your Profile
+                    </a>
+                    <a href="profile.html#settings" style="display:flex; align-items:center; gap:10px;
+            padding:12px 15px; color:rgba(255,255,255,0.8); font-size:13px;
+            transition:all 0.3s ease; text-decoration:none;"
+                        onmouseover="this.style.background='rgba(255,255,255,0.1)'"
+                        onmouseout="this.style.background='transparent'">
+                        <i class="fas fa-cog"></i> Settings
+                    </a>
+                    <div style="height:1px; background:rgba(255,255,255,0.1); margin:5px 0;"></div>
+                    <a onclick="logout()" style="display:flex; align-items:center; gap:10px;
+            padding:12px 15px; color:rgba(255, 100, 100, 0.9); font-size:13px;
+            transition:all 0.3s ease; cursor:pointer;" onmouseover="this.style.background='rgba(255,255,255,0.1)'"
+                        onmouseout="this.style.background='transparent'">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Top Bar -->
+            <div class="topbar">
+                <div>
+                    <h2>Analytics</h2>
+                    <p>Track your spending patterns</p>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid" style="margin-bottom:25px;">
+                <div class="stat-card">
+                    <div class="stat-icon purple">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalSpent">₹0</h3>
+                        <p>Total Spent</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon green">
+                        <i class="fas fa-receipt"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalTransactions">0</h3>
+                        <p>Transactions</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon orange">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="avgExpense">₹0</h3>
+                        <p>Avg per Expense</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon red">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="topCategory">-</h3>
+                        <p>Top Category</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Grid -->
+            <div class="dashboard-grid">
+
+                <!-- Category Pie Chart -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-chart-pie"></i> Spending by Category</h3>
+                    </div>
+                    <canvas id="categoryChart" height="250"></canvas>
+                </div>
+
+                <!-- Monthly Bar Chart -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-chart-bar"></i> Monthly Spending</h3>
+                    </div>
+                    <canvas id="monthlyChart" height="250"></canvas>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script src="js/analytics.js"></script>
+</body>
+
+</html>

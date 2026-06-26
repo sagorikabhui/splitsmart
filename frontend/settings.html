@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SplitSmart — Settings</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/settings.css">
+    <script src="js/theme.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Page Loader -->
+<div class="page-loader" id="pageLoader">
+    <i class="fas fa-spinner"></i>
+    <h2>Split<span style="color:#F39C12">Smart</span></h2>
+    <p>Loading settings...</p>
+</div>
+
+<div class="app-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <h1>Split<span>Smart</span></h1>
+            <p>Split bills smartly</p>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="dashboard.html">
+                <i class="fas fa-home"></i> Dashboard
+            </a></li>
+            <li><a href="groups.html">
+                <i class="fas fa-users"></i> Groups
+            </a></li>
+            <li><a href="expenses.html">
+                <i class="fas fa-receipt"></i> Expenses
+            </a></li>
+            <li><a href="analytics.html">
+                <i class="fas fa-chart-bar"></i> Analytics
+            </a></li>
+        </ul>
+        <div class="sidebar-bottom">
+            <div class="user-profile" onclick="toggleDropdown()">
+                <div class="user-avatar" id="userAvatar">U</div>
+                <div class="user-info">
+                    <h4 id="userName">User</h4>
+                    <p id="userEmail">email@example.com</p>
+                </div>
+                <i class="fas fa-chevron-up" id="dropdownArrow" style="color:rgba(255,255,255,0.6); font-size:12px;"></i>
+            </div>
+            <div id="profileDropdown" style="display:none; background:rgba(255,255,255,0.1);
+                border-radius:10px; margin-top:8px; overflow:hidden;">
+                <a href="profile.html" style="display:flex; align-items:center; gap:10px;
+                    padding:12px 15px; color:rgba(255,255,255,0.8); font-size:13px;
+                    transition:all 0.3s ease; text-decoration:none;"
+                    onmouseover="this.style.background='rgba(255,255,255,0.1)'"
+                    onmouseout="this.style.background='transparent'">
+                    <i class="fas fa-user"></i> Your Profile
+                </a>
+                <a href="settings.html" style="display:flex; align-items:center; gap:10px;
+                    padding:12px 15px; color:rgba(255,255,255,0.8); font-size:13px;
+                    transition:all 0.3s ease; text-decoration:none;"
+                    onmouseover="this.style.background='rgba(255,255,255,0.1)'"
+                    onmouseout="this.style.background='transparent'">
+                    <i class="fas fa-cog"></i> Settings
+                </a>
+                <div style="height:1px; background:rgba(255,255,255,0.1); margin:5px 0;"></div>
+                <a onclick="logout()" style="display:flex; align-items:center; gap:10px;
+                    padding:12px 15px; color:rgba(255, 100, 100, 0.9); font-size:13px;
+                    transition:all 0.3s ease; cursor:pointer;"
+                    onmouseover="this.style.background='rgba(255,255,255,0.1)'"
+                    onmouseout="this.style.background='transparent'">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Top Bar -->
+        <div class="topbar">
+            <div>
+                <h2>Settings</h2>
+                <p>Manage your app preferences</p>
+            </div>
+        </div>
+
+        <!-- Settings Grid -->
+        <div class="settings-grid">
+
+            <!-- Left Menu -->
+            <div class="settings-menu">
+                <div class="settings-menu-item active" onclick="showSection('payment')">
+                    <i class="fas fa-mobile-alt"></i> Payment Settings
+                </div>
+                <div class="settings-menu-item" onclick="showSection('notifications')">
+                    <i class="fas fa-bell"></i> Notifications
+                </div>
+                <div class="settings-menu-item" onclick="showSection('appearance')">
+                    <i class="fas fa-paint-brush"></i> Appearance
+                </div>
+                <div class="settings-menu-item" onclick="showSection('privacy')">
+                    <i class="fas fa-shield-alt"></i> Privacy
+                </div>
+                <div class="settings-menu-item danger" onclick="showSection('danger')">
+                    <i class="fas fa-exclamation-triangle"></i> Danger Zone
+                </div>
+            </div>
+
+            <!-- Right Content -->
+            <div class="settings-content">
+
+                <!-- Payment Settings -->
+                <div class="settings-section active" id="section-payment">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-mobile-alt"></i> Payment Settings</h3>
+                        </div>
+                        <p style="font-size:14px; color:var(--text-gray); margin-bottom:20px;">
+                            Add your UPI ID so friends can pay you directly through GPay, PhonePe or Paytm!
+                        </p>
+                        <div class="form-group">
+                            <label>UPI ID</label>
+                            <input type="text" id="upiId" placeholder="yourname@upi">
+                            <small style="color:var(--text-gray); font-size:12px; margin-top:5px; display:block;">
+                                <i class="fas fa-info-circle"></i>
+                                Example: name@okicici, name@ybl, name@paytm
+                            </small>
+                        </div>
+                        <p class="error-message" id="upiError"></p>
+                        <p class="success-message" id="upiSuccess"></p>
+                        <button class="btn-primary" onclick="saveUpiId()">
+                            <i class="fas fa-save"></i> Save UPI ID
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Notifications -->
+                <div class="settings-section" id="section-notifications">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-bell"></i> Notification Preferences</h3>
+                        </div>
+                        <p style="font-size:14px; color:var(--text-gray); margin-bottom:20px;">
+                            Choose what notifications you want to receive!
+                        </p>
+                        <div class="toggle-item">
+                            <div class="toggle-info">
+                                <h4>New Expense Added</h4>
+                                <p>Get notified when someone adds an expense in your group</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="notifExpense" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="toggle-item">
+                            <div class="toggle-info">
+                                <h4>Added to Group</h4>
+                                <p>Get notified when someone adds you to a group</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="notifGroup" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="toggle-item">
+                            <div class="toggle-info">
+                                <h4>Payment Received</h4>
+                                <p>Get notified when someone settles up with you</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="notifPayment" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="toggle-item">
+                            <div class="toggle-info">
+                                <h4>Payment Reminder</h4>
+                                <p>Get reminded about pending payments</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="notifReminder">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <button class="btn-primary" style="margin-top:20px;" onclick="saveNotifications()">
+                            <i class="fas fa-save"></i> Save Preferences
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Appearance -->
+                <div class="settings-section" id="section-appearance">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-paint-brush"></i> Appearance</h3>
+                        </div>
+                        <p style="font-size:14px; color:var(--text-gray); margin-bottom:20px;">
+                            Customize how SplitSmart looks for you!
+                        </p>
+
+                        <!-- Theme -->
+                        <div class="form-group">
+                            <label>Theme</label>
+                            <div class="theme-options">
+                                <div class="theme-option active" onclick="setTheme('light')">
+                                    <div class="theme-preview light-preview"></div>
+                                    <span>Light</span>
+                                </div>
+                                <div class="theme-option" onclick="setTheme('dark')">
+                                    <div class="theme-preview dark-preview"></div>
+                                    <span>Dark</span>
+                                </div>
+                                <div class="theme-option" onclick="setTheme('purple')">
+                                    <div class="theme-preview purple-preview"></div>
+                                    <span>Purple</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Currency -->
+                        <div class="form-group" style="margin-top:20px;">
+                            <label>Currency</label>
+                            <select id="currencySelect">
+                                <option value="INR">₹ Indian Rupee (INR)</option>
+                                <option value="USD">$ US Dollar (USD)</option>
+                                <option value="EUR">€ Euro (EUR)</option>
+                                <option value="GBP">£ British Pound (GBP)</option>
+                            </select>
+                        </div>
+
+                        <button class="btn-primary" style="margin-top:20px;" onclick="saveAppearance()">
+                            <i class="fas fa-save"></i> Save Appearance
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Privacy -->
+                <div class="settings-section" id="section-privacy">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-shield-alt"></i> Privacy Settings</h3>
+                        </div>
+                        <p style="font-size:14px; color:var(--text-gray); margin-bottom:20px;">
+                            Control your privacy preferences!
+                        </p>
+                        <div class="toggle-item">
+                            <div class="toggle-info">
+                                <h4>Show my UPI ID to group members</h4>
+                                <p>Allow group members to see your UPI ID for payments</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="privacyUpi" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="toggle-item">
+                            <div class="toggle-info">
+                                <h4>Show my email to group members</h4>
+                                <p>Allow group members to see your email address</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="privacyEmail" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <button class="btn-primary" style="margin-top:20px;" onclick="savePrivacy()">
+                            <i class="fas fa-save"></i> Save Privacy Settings
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Danger Zone -->
+                <div class="settings-section" id="section-danger">
+                    <div class="card danger-card">
+                        <div class="card-header">
+                            <h3 style="color:var(--danger);">
+                                <i class="fas fa-exclamation-triangle"></i> Danger Zone
+                            </h3>
+                        </div>
+                        <p style="font-size:14px; color:var(--text-gray); margin-bottom:25px;">
+                            These actions are irreversible. Please be careful!
+                        </p>
+                        <div class="danger-item">
+                            <div>
+                                <h4>Clear All Expenses</h4>
+                                <p>Delete all your expenses permanently. This cannot be undone!</p>
+                            </div>
+                            <button class="btn-danger" onclick="confirmAction('clear-expenses')">
+                                <i class="fas fa-trash"></i> Clear Expenses
+                            </button>
+                        </div>
+                        <div class="danger-item">
+                            <div>
+                                <h4>Delete Account</h4>
+                                <p>Permanently delete your account and all associated data!</p>
+                            </div>
+                            <button class="btn-danger" onclick="confirmAction('delete-account')">
+                                <i class="fas fa-user-times"></i> Delete Account
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script src="js/settings.js"></script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SplitSmart — Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <script src="js/theme.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Page Loader -->
+    <div class="page-loader" id="pageLoader">
+        <i class="fas fa-spinner"></i>
+        <h2>Split<span style="color:#F39C12">Smart</span></h2>
+        <p>Loading your dashboard...</p>
+    </div>
+
+    <div class="app-container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <h1>Split<span>Smart</span></h1>
+                <p>Split bills smartly</p>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html" class="active">
+                        <i class="fas fa-home"></i> Dashboard
+                    </a></li>
+                <li><a href="groups.html">
+                        <i class="fas fa-users"></i> Groups
+                    </a></li>
+                <li><a href="expenses.html">
+                        <i class="fas fa-receipt"></i> Expenses
+                    </a></li>
+                <li><a href="analytics.html">
+                        <i class="fas fa-chart-bar"></i> Analytics
+                    </a></li>
+            </ul>
+
+            <div class="sidebar-bottom">
+                <div class="user-profile" onclick="toggleDropdown()">
+                    <div class="user-avatar" id="userAvatar">U</div>
+                    <div class="user-info">
+                        <h4 id="userName">User</h4>
+                        <p id="userEmail">email@example.com</p>
+                    </div>
+                    <i class="fas fa-chevron-up" id="dropdownArrow"
+                        style="color:rgba(255,255,255,0.6); font-size:12px;"></i>
+                </div>
+
+                <!-- Dropdown Menu -->
+                <div id="profileDropdown" style="display:none; background:rgba(255,255,255,0.1);
+        border-radius:10px; margin-top:8px; overflow:hidden;">
+                    <a href="profile.html" style="display:flex; align-items:center; gap:10px;
+            padding:12px 15px; color:rgba(255,255,255,0.8); font-size:13px;
+            transition:all 0.3s ease; text-decoration:none;"
+                        onmouseover="this.style.background='rgba(255,255,255,0.1)'"
+                        onmouseout="this.style.background='transparent'">
+                        <i class="fas fa-user"></i> Your Profile
+                    </a>
+                    <a href="settings.html" style="display:flex; align-items:center; gap:10px;
+            padding:12px 15px; color:rgba(255,255,255,0.8); font-size:13px;
+            transition:all 0.3s ease; text-decoration:none;"
+                        onmouseover="this.style.background='rgba(255,255,255,0.1)'"
+                        onmouseout="this.style.background='transparent'">
+                        <i class="fas fa-cog"></i> Settings
+                    </a>
+                    <div style="height:1px; background:rgba(255,255,255,0.1); margin:5px 0;"></div>
+                    <a onclick="logout()" style="display:flex; align-items:center; gap:10px;
+            padding:12px 15px; color:rgba(255, 100, 100, 0.9); font-size:13px;
+            transition:all 0.3s ease; cursor:pointer;" onmouseover="this.style.background='rgba(255,255,255,0.1)'"
+                        onmouseout="this.style.background='transparent'">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Top Bar -->
+            <div class="topbar">
+                <div>
+                    <h2>Dashboard</h2>
+                    <p id="welcomeMsg">Welcome back!</p>
+                </div>
+                <div class="topbar-actions">
+                    <button class="btn-add" onclick="openAddExpenseModal()">
+                        <i class="fas fa-plus"></i> Add Expense
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon purple">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalExpenses">₹0</h3>
+                        <p>Total Expenses</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon green">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalOwedToMe">₹0</h3>
+                        <p>You are owed</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon red">
+                        <i class="fas fa-arrow-up"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalIOwe">₹0</h3>
+                        <p>You owe</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon orange">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalGroups">0</h3>
+                        <p>Total Groups</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Grid -->
+            <div class="dashboard-grid">
+
+                <!-- Balances Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-balance-scale"></i> Balances</h3>
+                        <a href="expenses.html">View All</a>
+                    </div>
+                    <div id="balancesList">
+                        <div class="empty-state">
+                            <i class="fas fa-balance-scale"></i>
+                            <p>No balances yet!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Expenses Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-receipt"></i> Recent Expenses</h3>
+                        <a href="expenses.html">View All</a>
+                    </div>
+                    <div id="recentExpenses">
+                        <div class="empty-state">
+                            <i class="fas fa-receipt"></i>
+                            <p>No expenses yet!</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Add Expense Modal -->
+    <div class="modal-overlay" id="addExpenseModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-plus"></i> Add Expense</h3>
+                <div class="modal-close" onclick="closeAddExpenseModal()">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" id="expenseTitle" placeholder="e.g. Dinner at restaurant">
+            </div>
+            <div class="form-group">
+                <label>Amount (₹)</label>
+                <input type="number" id="expenseAmount" placeholder="Enter amount">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="expenseCategory">
+                        <option value="food">Food & Drinks</option>
+                        <option value="transport">Transport</option>
+                        <option value="accommodation">Accommodation</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="utilities">Utilities</option>
+                        <option value="medical">Medical</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" id="expenseDate">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Group (Optional)</label>
+                <select id="expenseGroup">
+                    <option value="">No Group</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Split Type</label>
+                <select id="splitType">
+                    <option value="equal">Split Equally</option>
+                    <option value="exact">Exact Amount</option>
+                    <option value="percentage">Percentage</option>
+                </select>
+            </div>
+            <p class="error-message" id="expenseError"></p>
+            <button class="btn-primary" onclick="addExpense()">
+                <i class="fas fa-plus"></i> Add Expense
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>
