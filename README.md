@@ -14,16 +14,24 @@ The highlight of SplitSmart is its AI powered receipt scanner built using Google
 
 ## 🚀 Key Features
 
-- 🤖 **AI Receipt Scanner** — Upload bill photo, AI extracts details automatically
-- 👥 **Group Management** — Create groups for trips, home, office or friends
-- 💰 **Smart Expense Splitting** — Split equally, by exact amount or percentage
-- 📊 **Analytics Dashboard** — Interactive charts for spending insights
-- 🔢 **Debt Simplification** — Algorithm to minimize number of transactions
-- 💸 **UPI Integration** — One click UPI payment for Indian users
-- 🔐 **Secure Authentication** — Register, login, forgot password via email
-- 👤 **Profile Management** — Edit profile, change password, UPI settings
-- 🎨 **Theme Customization** — Light, dark and purple themes
-- 📱 **Responsive Design** — Works on desktop and mobile devices
+## Key Features
+
+- AI Receipt Scanner — Upload bill photo, AI extracts details automatically
+- AI Chatbot Assistant — Ask questions about your expenses in natural language
+- Group Management — Create groups for trips, home, office or friends
+- Smart Expense Splitting — Split equally, by exact amount or percentage
+- Analytics Dashboard — Interactive charts for spending insights
+- Debt Simplification — Algorithm to minimize number of transactions
+- UPI Integration — One click UPI payment for Indian users
+- Secure Authentication — Register, login, forgot password via email
+- Email Notifications — Welcome email and password reset via Gmail
+- Profile Management — Edit profile, change password, UPI settings
+- Theme Customization — Light, dark and purple themes
+- Responsive Design — Works on desktop and mobile devices
+- Beautiful Landing Page — Professional landing page with animations
+- Pricing Section — Free and premium plans displayed
+- FAQ Section — Common questions answered
+- Counter Animation — Animated statistics on landing page
 
 ---
 
