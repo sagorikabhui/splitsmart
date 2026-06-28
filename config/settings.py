@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'expenses',
     'analytics',
     'scanner',
+    'chatbot',
 ]
 
 MIDDLEWARE = [

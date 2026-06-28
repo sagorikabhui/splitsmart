@@ -11,5 +11,6 @@ urlpatterns = [
     path('api/expenses/', include('expenses.urls')),
     path('api/analytics/', include('analytics.urls')),
     path('api/scanner/', include('scanner.urls')),
+    path('api/chatbot/', include('chatbot.urls')),
     path('', RedirectView.as_view(url='/static/home.html'), name='home'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

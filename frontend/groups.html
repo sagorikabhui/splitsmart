@@ -7,8 +7,10 @@
     <title>SplitSmart — Groups</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/dashboard.css">
-    <script src="js/theme.js"></script>
+    <link rel="stylesheet" href="css/groups.css">
+    <link rel="stylesheet" href="css/chatbot.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="js/theme.js"></script>
 </head>
 
 <body>
@@ -52,28 +54,27 @@
                     <i class="fas fa-chevron-up" id="dropdownArrow"
                         style="color:rgba(255,255,255,0.6); font-size:12px;"></i>
                 </div>
-
-                <!-- Dropdown Menu -->
                 <div id="profileDropdown" style="display:none; background:rgba(255,255,255,0.1);
-        border-radius:10px; margin-top:8px; overflow:hidden;">
+                border-radius:10px; margin-top:8px; overflow:hidden;">
                     <a href="profile.html" style="display:flex; align-items:center; gap:10px;
-            padding:12px 15px; color:rgba(255,255,255,0.8); font-size:13px;
-            transition:all 0.3s ease; text-decoration:none;"
+                    padding:12px 15px; color:rgba(255,255,255,0.8); font-size:13px;
+                    transition:all 0.3s ease; text-decoration:none;"
                         onmouseover="this.style.background='rgba(255,255,255,0.1)'"
                         onmouseout="this.style.background='transparent'">
                         <i class="fas fa-user"></i> Your Profile
                     </a>
-                    <a href="settings.html"style="display:flex; align-items:center; gap:10px;
-            padding:12px 15px; color:rgba(255,255,255,0.8); font-size:13px;
-            transition:all 0.3s ease; text-decoration:none;"
+                    <a href="settings.html" style="display:flex; align-items:center; gap:10px;
+                    padding:12px 15px; color:rgba(255,255,255,0.8); font-size:13px;
+                    transition:all 0.3s ease; text-decoration:none;"
                         onmouseover="this.style.background='rgba(255,255,255,0.1)'"
                         onmouseout="this.style.background='transparent'">
                         <i class="fas fa-cog"></i> Settings
                     </a>
                     <div style="height:1px; background:rgba(255,255,255,0.1); margin:5px 0;"></div>
                     <a onclick="logout()" style="display:flex; align-items:center; gap:10px;
-            padding:12px 15px; color:rgba(255, 100, 100, 0.9); font-size:13px;
-            transition:all 0.3s ease; cursor:pointer;" onmouseover="this.style.background='rgba(255,255,255,0.1)'"
+                    padding:12px 15px; color:rgba(255, 100, 100, 0.9); font-size:13px;
+                    transition:all 0.3s ease; cursor:pointer;"
+                        onmouseover="this.style.background='rgba(255,255,255,0.1)'"
                         onmouseout="this.style.background='transparent'">
                         <i class="fas fa-sign-out-alt"></i> Logout
                     </a>
@@ -84,25 +85,51 @@
         <!-- Main Content -->
         <main class="main-content">
 
-            <!-- Top Bar -->
-            <div class="topbar">
-                <div>
-                    <h2>Groups</h2>
-                    <p>Manage your expense groups</p>
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="page-header-left">
+                    <h2>My Groups</h2>
+                    <p>Manage and track your expense groups</p>
                 </div>
-                <div class="topbar-actions">
-                    <button class="btn-add" onclick="openCreateGroupModal()">
-                        <i class="fas fa-plus"></i> Create Group
-                    </button>
+                <button class="btn-add" onclick="openCreateGroupModal()">
+                    <i class="fas fa-plus"></i> Create Group
+                </button>
+            </div>
+
+            <!-- Groups Stats Bar -->
+            <div class="groups-stats-bar">
+                <div class="groups-stat">
+                    <i class="fas fa-users"></i>
+                    <div>
+                        <h4 id="totalGroupsCount">0</h4>
+                        <p>Total Groups</p>
+                    </div>
+                </div>
+                <div class="groups-stat">
+                    <i class="fas fa-user-friends"></i>
+                    <div>
+                        <h4 id="totalMembersCount">0</h4>
+                        <p>Total Members</p>
+                    </div>
+                </div>
+                <div class="groups-stat">
+                    <i class="fas fa-receipt"></i>
+                    <div>
+                        <h4 id="totalGroupExpenses">₹0</h4>
+                        <p>Group Expenses</p>
+                    </div>
                 </div>
             </div>
 
             <!-- Groups Grid -->
-            <div id="groupsGrid" style="display:grid; grid-template-columns: repeat(3,1fr); gap:20px;">
-                <div class="empty-state" style="grid-column: 1/-1;">
-                    <i class="fas fa-users"></i>
-                    <p>No groups yet! Create your first group.</p>
-                </div>
+            <div id="groupsGrid" class="groups-grid"></div>
+
+            <!-- Animated Background -->
+            <div class="animated-bg">
+                <div class="bubble bubble-1"></div>
+                <div class="bubble bubble-2"></div>
+                <div class="bubble bubble-3"></div>
+                <div class="bubble bubble-4"></div>
             </div>
 
         </main>
@@ -128,11 +155,11 @@
             <div class="form-group">
                 <label>Group Type</label>
                 <select id="groupType">
-                    <option value="trip">Trip</option>
-                    <option value="home">Home</option>
-                    <option value="office">Office</option>
-                    <option value="friends">Friends</option>
-                    <option value="other">Other</option>
+                    <option value="trip">✈️ Trip</option>
+                    <option value="home">🏠 Home</option>
+                    <option value="office">💼 Office</option>
+                    <option value="friends">👫 Friends</option>
+                    <option value="other">📦 Other</option>
                 </select>
             </div>
             <p class="error-message" id="groupError"></p>
@@ -167,6 +194,7 @@
     <div class="toast" id="toast"></div>
 
     <script src="js/groups.js"></script>
+    <script src="js/chatbot.js"></script>
 </body>
 
 </html>

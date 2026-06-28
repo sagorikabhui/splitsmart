@@ -12,13 +12,18 @@
     --secondary: #F39C12;
     --background: #F8F4FF;
     --white: #FFFFFF;
+    --card-bg: #FFFFFF;
     --text-dark: #2C3E50;
     --text-gray: #7F8C8D;
+    --text-muted: #999999;
     --border: #E8D5F5;
+    --border-light: #f5f0ff;
     --success: #27AE60;
     --danger: #E74C3C;
     --shadow: 0 2px 15px rgba(142, 68, 173, 0.1);
     --shadow-hover: 0 5px 25px rgba(142, 68, 173, 0.2);
+    --input-bg: #FFFFFF;
+    --hover-bg: rgba(106, 27, 154, 0.05);
 }
 
 body {
@@ -55,14 +60,13 @@ input, select, textarea {
 }
 
 .auth-box {
-    background: var(--white);
+    background: var(--card-bg);
     border-radius: 20px;
     padding: 40px;
     width: 100%;
     max-width: 450px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
 }
-
 .auth-logo {
     text-align: center;
     margin-bottom: 30px;
@@ -127,7 +131,7 @@ input, select, textarea {
     border-radius: 10px;
     font-size: 14px;
     color: var(--text-dark);
-    background: var(--white);
+    background: var(--input-bg);
     transition: border-color 0.3s ease;
 }
 
@@ -336,4 +340,95 @@ input, select, textarea {
 .no-data p {
     font-size: 13px;
     color: var(--text-gray);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Animate stat cards */
+.stat-card {
+    animation: fadeInUp 0.6s ease both;
+}
+
+.stat-card:nth-child(1) { animation-delay: 0.1s; }
+.stat-card:nth-child(2) { animation-delay: 0.2s; }
+.stat-card:nth-child(3) { animation-delay: 0.3s; }
+.stat-card:nth-child(4) { animation-delay: 0.4s; }
+
+/* Animate cards */
+.card {
+    animation: scaleIn 0.5s ease both;
+}
+
+/* Animate sidebar */
+.sidebar {
+    animation: fadeInLeft 0.5s ease both;
+}
+
+/* Animate topbar */
+.topbar {
+    animation: slideInDown 0.5s ease both;
+}
+
+/* Animate modal */
+.modal {
+    animation: scaleIn 0.3s ease both;
+}
+
+/* Hover effects for buttons */
+.btn-add {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-add::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease, height 0.5s ease;
+}
+
+.btn-add:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* Smooth transitions */
+.balance-item, .expense-item {
+    transition: all 0.3s ease;
+}
+
+.balance-item:hover, .expense-item:hover {
+    background: rgba(142, 68, 173, 0.05);
+    padding-left: 10px;
+    border-radius: 10px;
 }

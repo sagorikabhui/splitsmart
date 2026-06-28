@@ -13,8 +13,26 @@ if (user) {
     document.getElementById('userName').textContent = user.first_name + ' ' + user.last_name;
     document.getElementById('userAvatar').textContent = user.first_name.charAt(0).toUpperCase();
     document.getElementById('userEmail').textContent = user.email;
-    document.getElementById('welcomeMsg').textContent = `Welcome back, ${user.first_name}!`;
+    document.getElementById('welcomeName').textContent = `Welcome back, ${user.first_name}!`;
 }
+
+// Welcome banner greeting based on time
+const hour = new Date().getHours();
+let greeting = '';
+if (hour < 12) greeting = 'Good Morning! ☀️';
+else if (hour < 17) greeting = 'Good Afternoon! 🌤️';
+else greeting = 'Good Evening! 🌙';
+document.getElementById('welcomeGreeting').textContent = greeting;
+
+// Show current date
+const now = new Date();
+const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+document.getElementById('welcomeDate').innerHTML = `
+    <div style="font-size:22px; font-weight:800; color:white;">
+        ${now.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}
+    </div>
+    <div>${now.toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric' })}</div>
+`;
 
 // Set today's date in expense form
 document.getElementById('expenseDate').valueAsDate = new Date();
@@ -95,6 +113,10 @@ async function loadBalances() {
 
         document.getElementById('totalOwedToMe').textContent = `₹${owedToMe.toFixed(2)}`;
         document.getElementById('totalIOwe').textContent = `₹${iOwe.toFixed(2)}`;
+
+        // Update welcome banner amounts
+        document.getElementById('bannerOwed').textContent = `₹${owedToMe.toFixed(2)}`;
+        document.getElementById('bannerOwe').textContent = `₹${iOwe.toFixed(2)}`;
 
     } catch (error) {
         console.error('Error loading balances:', error);
@@ -229,7 +251,7 @@ function toggleDropdown() {
 }
 
 // Close dropdown when clicking outside
-document.addEventListener('click', function(e) {
+document.addEventListener('click', function (e) {
     const dropdown = document.getElementById('profileDropdown');
     const userProfile = document.querySelector('.user-profile');
     if (!userProfile.contains(e.target)) {

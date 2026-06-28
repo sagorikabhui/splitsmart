@@ -7,6 +7,7 @@
     <title>SplitSmart — Dashboard</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/chatbot.css">
     <script src="js/theme.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -86,11 +87,36 @@
         <!-- Main Content -->
         <main class="main-content">
 
+            <!-- Welcome Banner -->
+            <div class="welcome-banner">
+                <div class="welcome-left">
+                    <div class="welcome-greeting" id="welcomeGreeting">Good Morning! ☀️</div>
+                    <h2 id="welcomeName">Welcome back!</h2>
+                    <p id="welcomeMsg">Here's your financial summary for today!</p>
+                    <div class="welcome-tags">
+                        <div class="welcome-tag">
+                            <i class="fas fa-arrow-down"></i>
+                            <span>You are owed <strong id="bannerOwed">₹0</strong></span>
+                        </div>
+                        <div class="welcome-tag">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>You owe <strong id="bannerOwe">₹0</strong></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="welcome-right">
+                    <div class="welcome-date" id="welcomeDate"></div>
+                    <div class="welcome-illustration">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                </div>
+            </div>
+
             <!-- Top Bar -->
             <div class="topbar">
                 <div>
                     <h2>Dashboard</h2>
-                    <p id="welcomeMsg">Welcome back!</p>
+                    <p>Overview of your expenses and balances</p>
                 </div>
                 <div class="topbar-actions">
                     <button class="btn-add" onclick="openAddExpenseModal()">
@@ -98,6 +124,7 @@
                     </button>
                 </div>
             </div>
+
 
             <!-- Stats Cards -->
             <div class="stats-grid">
@@ -237,6 +264,7 @@
     <div class="toast" id="toast"></div>
 
     <script src="js/dashboard.js"></script>
+    <script src="js/chatbot.js"></script>
 </body>
 
 </html>

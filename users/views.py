@@ -21,6 +21,37 @@ class RegisterView(APIView):
         if serializer.is_valid():
             user = serializer.save()
             token, created = Token.objects.get_or_create(user=user)
+
+            # Send welcome email
+            try:
+                send_mail(
+                    subject='Welcome to SplitSmart! 🎉',
+                    message=f'''
+Hi {user.first_name},
+
+Welcome to SplitSmart! 🎉
+
+Your account has been created successfully!
+
+Here's what you can do with SplitSmart:
+✅ Create groups for trips, home, office or friends
+✅ Add and split expenses easily
+✅ Scan receipts with AI
+✅ Settle up instantly with UPI payments
+✅ Track your spending with analytics
+
+Login now and start splitting bills smartly!
+
+Best regards,
+SplitSmart Team
+                    ''',
+                    from_email=os.getenv('EMAIL_HOST_USER'),
+                    recipient_list=[user.email],
+                    fail_silently=False,
+                )
+            except Exception:
+                pass
+
             return Response({
                 'token': token.key,
                 'user': UserSerializer(user).data
